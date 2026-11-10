@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventoApp.Views.ResumoEventoPage"
+             Title="Resumo do Evento"
+             BackgroundColor="{StaticResource Fundo}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14" MaximumWidthRequest="600">
+
+            <Label Text="Resumo do evento"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primaria}" />
+
+            <Border Padding="18" BackgroundColor="White">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="12">
+
+                    <VerticalStackLayout>
+                        <Label Text="Nome do evento" TextColor="{StaticResource TextoSuave}" FontSize="12" />
+                        <Label Text="{Binding Nome}" FontSize="18" FontAttributes="Bold" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Local" TextColor="{StaticResource TextoSuave}" FontSize="12" />
+                        <Label Text="{Binding Local}" FontSize="16" />
+                    </VerticalStackLayout>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Data de início" TextColor="{StaticResource TextoSuave}" FontSize="12" />
+                            <Label Text="{Binding DataInicio, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Data de término" TextColor="{StaticResource TextoSuave}" FontSize="12" />
+                            <Label Text="{Binding DataTermino, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Duração" TextColor="{StaticResource TextoSuave}" FontSize="12" />
+                            <Label Text="{Binding DuracaoTexto}" FontSize="16" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Diferença (TimeSpan)" TextColor="{StaticResource TextoSuave}" FontSize="12" />
+                            <Label Text="{Binding DiferencaTimeSpanTexto}" FontSize="16" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="Participantes" TextColor="{StaticResource TextoSuave}" FontSize="12" />
+                            <Label Text="{Binding NumeroParticipantes, StringFormat='{0:N0}'}" FontSize="16" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Custo por participante" TextColor="{StaticResource TextoSuave}" FontSize="12" />
+                            <Label Text="{Binding CustoPorParticipante, StringFormat='{0:C}'}" FontSize="16" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" Color="{StaticResource TextoSuave}" Opacity="0.3" />
+
+                    <VerticalStackLayout>
+                        <Label Text="Custo total do evento" TextColor="{StaticResource TextoSuave}" FontSize="12" />
+                        <Label Text="{Binding CustoTotal, StringFormat='{0:C}'}"
+                               FontSize="26"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource Primaria}" />
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button Grid.Column="0"
+                        Text="Editar"
+                        BackgroundColor="{StaticResource Primaria}"
+                        TextColor="White"
+                        Clicked="OnEditarClicked" />
+                <Button Grid.Column="1"
+                        Text="Excluir"
+                        BackgroundColor="{StaticResource Erro}"
+                        TextColor="White"
+                        Clicked="OnExcluirClicked" />
+            </Grid>
+
+            <Button Text="Voltar à lista"
+                    BackgroundColor="{StaticResource TextoSuave}"
+                    TextColor="White"
+                    Clicked="OnVoltarClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

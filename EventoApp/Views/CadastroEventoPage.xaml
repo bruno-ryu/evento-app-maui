@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventoApp.Views.CadastroEventoPage"
+             Title="Novo evento"
+             BackgroundColor="{StaticResource Fundo}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14" MaximumWidthRequest="600">
+
+            <Label Text="Dados do evento"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primaria}" />
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Nome do evento" />
+                <Entry Placeholder="Ex.: Evento de Tecnologia"
+                       Text="{Binding Nome}" />
+            </VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout Grid.Column="0" Spacing="4">
+                    <Label Text="Data de início" />
+                    <DatePicker Date="{Binding DataInicio}"
+                                Format="dd/MM/yyyy" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="4">
+                    <Label Text="Data de término" />
+                    <DatePicker Date="{Binding DataTermino}"
+                                MinimumDate="{Binding DataInicio}"
+                                Format="dd/MM/yyyy" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Número de participantes" />
+                <Entry Placeholder="Ex.: 50"
+                       Keyboard="Numeric"
+                       Text="{Binding NumeroParticipantes}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Local do evento" />
+                <Entry Placeholder="Ex.: Auditório da ETEC"
+                       Text="{Binding Local}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Custo por participante (R$)" />
+                <Entry Placeholder="Ex.: 35,50"
+                       Keyboard="Numeric"
+                       Text="{Binding CustoPorParticipante}" />
+            </VerticalStackLayout>
+
+            <Border Padding="14"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource Primaria}"
+                    StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Prévia dos cálculos"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource Primaria}" />
+                    <Label Text="{Binding DuracaoTexto, StringFormat='Duração: {0}'}" />
+                    <Label Text="{Binding CustoTotal, StringFormat='Custo total: {0:C}'}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="MensagemErroLabel"
+                   TextColor="{StaticResource Erro}"
+                   IsVisible="False" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button Grid.Column="0"
+                        Text="Cancelar"
+                        BackgroundColor="{StaticResource TextoSuave}"
+                        TextColor="White"
+                        Clicked="OnCancelarClicked" />
+                <Button Grid.Column="1"
+                        Text="Salvar"
+                        BackgroundColor="{StaticResource Primaria}"
+                        TextColor="White"
+                        Clicked="OnSalvarClicked" />
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
